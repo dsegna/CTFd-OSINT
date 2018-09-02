@@ -148,7 +148,7 @@ class CTFdStandardChallenge(BaseChallenge):
         for chal_key in chal_keys:
             if get_key_class(chal_key.type).compare(chal_key, provided_key):
                 return True, 'Correct'
-        return False, 'Incorrect'
+        return False, 'Submission Under Review. If found correct it will automatically be marked as solved.'
 
     @staticmethod
     def solve(team, chal, request):

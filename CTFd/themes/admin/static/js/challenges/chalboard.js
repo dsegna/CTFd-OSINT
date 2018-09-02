@@ -130,8 +130,8 @@ function renderSubmissionResponse(data, cb) {
         window.location = script_root + "/login?next=" + script_root + window.location.pathname + window.location.hash
         return
     }
-    else if (result.status == 0) { // Incorrect key
-        result_notification.addClass('alert alert-danger alert-dismissable text-center');
+       else if (result.status == 0) { // Under Review key
+        result_notification.addClass('alert alert-warning alert-dismissable text-center');
         result_notification.slideDown();
 
         answer_input.removeClass("correct");

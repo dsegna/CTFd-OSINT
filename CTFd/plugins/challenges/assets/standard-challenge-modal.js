@@ -20,9 +20,15 @@ window.challenge.postRender = function(){
 
 window.challenge.submit = function(cb, preview){
     var chal_id = $('#chal-id').val();
-    var answer = $('#answer-input').val();
+    
     var nonce = $('#nonce').val();
 
+	var x = $('#answer-input').val();
+	var y = $('#answer-url').val();
+	var z = $('#answer-just').val();
+	var delim = " | "
+
+	var answer  = x+delim+y+delim+z+delim;
     var url = "/chal/";
     if (preview) {
         url = "/admin/chal/";
