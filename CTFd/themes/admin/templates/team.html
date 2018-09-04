@@ -243,7 +243,7 @@
 						<tr class="chal-solve">
 							<td class="text-center chal" id="{{ chal.id }}">{{ chal.name }}</td>
 							<td class="text-center">{{ chal.category }}</td>
-							<td class="text-center">{{ chal.value }}</td>
+							<td class="text-center ch-value">{{ chal.value }}</td>
 							<td class="text-center">
 								<span class="mark-correct" data-toggle="tooltip"
 									  data-placement="top" title="Mark {{ chal.name }} correct for {{ team.name }}">
@@ -369,6 +369,7 @@ $(document).ready(function () {
         var elem = $(this).parent().parent();
         var type = elem.attr('class');
         var chal = elem.find('.chal').attr('id');
+	var chalval =  elem.find('.ch-value').text();
         var team = window.location.pathname.split('/').pop();
 
         var chal_name = htmlentities(elem.find('.chal').text().trim());
@@ -380,7 +381,7 @@ $(document).ready(function () {
         description.find('#confirm-chal-name').text(chal_name);
         description = description.html();
 
-        var action = '{{request.script_root }}/admin/solves/' + team + '/' + chal + '/solve';
+        var action = '{{request.script_root }}/admin/solves/' + team + '/' + chal +'/'+chalval+ '/solve';
 
         var title = 'Mark ' + chal_name + ' solved for ' + team_name;
         var description = "<span>Are you sure you want to mark " +
@@ -394,7 +395,7 @@ $(document).ready(function () {
             title: title,
             body: description,
             success: function () {
-                var route = script_root + '/admin/solves/' + team + '/' + chal + '/solve';
+                var route = script_root + '/admin/solves/' + team + '/' + chal + '/' + chalval + '/solve';
                 $.post(route, {
                     nonce: nonce,
                 }, function (data) {

@@ -379,7 +379,7 @@ def chal(chalid):
         solves = Solves.query.filter_by(teamid=session['id'], chalid=chalid).first()
 
         # Challange not solved yet
-        if not solves:
+        if True:
             provided_key = request.form['key'].strip()
             saved_keys = Keys.query.filter_by(chal=chal.id).all()
 

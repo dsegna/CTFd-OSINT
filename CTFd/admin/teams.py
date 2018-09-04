@@ -288,10 +288,10 @@ def admin_fails(teamid):
         return jsonify(json_data)
 
 
-@admin_teams.route('/admin/solves/<int:teamid>/<int:chalid>/solve', methods=['POST'])
+@admin_teams.route('/admin/solves/<int:teamid>/<int:chalid>/<int:chalval>/solve', methods=['POST'])
 @admins_only
-def create_solve(teamid, chalid):
-    solve = Solves(teamid=teamid, chalid=chalid, ip='127.0.0.1', flag='MARKED_AS_SOLVED_BY_ADMIN')
+def create_solve(teamid, chalid,chalval):
+    solve = Awards(teamid=teamid, name=chalid, value=chalval)
     db.session.add(solve)
     db.session.commit()
     db.session.close()

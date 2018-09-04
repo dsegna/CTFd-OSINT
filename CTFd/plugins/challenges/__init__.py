@@ -160,11 +160,11 @@ class CTFdStandardChallenge(BaseChallenge):
         :param request: The request the user submitted
         :return:
         """
-        provided_key = request.form['key'].strip()
-        solve = Solves(teamid=team.id, chalid=chal.id, ip=utils.get_ip(req=request), flag=provided_key)
+	solve = Awards(teamid=team.id, name=chal.id, value=chal.value)
         db.session.add(solve)
         db.session.commit()
         db.session.close()
+
 
     @staticmethod
     def fail(team, chal, request):
