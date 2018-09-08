@@ -229,7 +229,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<table class="table table-striped">
-					<h3 class="text-center py-3 d-block">Missing</h3>
+					<h3 class="text-center py-3 d-block">Award Score</h3>
 					<thead>
 					<tr>
 						<td class="text-center"><b>Challenge</b></td>
@@ -243,7 +243,8 @@
 						<tr class="chal-solve">
 							<td class="text-center chal" id="{{ chal.id }}">{{ chal.name }}</td>
 							<td class="text-center">{{ chal.category }}</td>
-							<td class="text-center ch-value">{{ chal.value }}</td>
+							<td> <input class="text-center ch-value" step="10" name="value" value="{{ chal.value }}" required="" type="number"></td>
+							<!-- <td class="text-center ch-value">{{ chal.value }}</td> -->
 							<td class="text-center">
 								<span class="mark-correct" data-toggle="tooltip"
 									  data-placement="top" title="Mark {{ chal.name }} correct for {{ team.name }}">
@@ -369,7 +370,8 @@ $(document).ready(function () {
         var elem = $(this).parent().parent();
         var type = elem.attr('class');
         var chal = elem.find('.chal').attr('id');
-	var chalval =  elem.find('.ch-value').text();
+	var chalval =  elem.find('.ch-value').val();
+	console.log(chalval);
         var team = window.location.pathname.split('/').pop();
 
         var chal_name = htmlentities(elem.find('.chal').text().trim());

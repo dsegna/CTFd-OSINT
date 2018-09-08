@@ -291,7 +291,14 @@ def admin_fails(teamid):
 @admin_teams.route('/admin/solves/<int:teamid>/<int:chalid>/<int:chalval>/solve', methods=['POST'])
 @admins_only
 def create_solve(teamid, chalid,chalval):
+
+    tl_chal = Challenges.query.filter_by(id=chalid).first()
+    chal_name = tl_chal.name
+    chal_cat =  tl_chal.category
+    award_desc = chal_cat + " : " + chal_cat
     solve = Awards(teamid=teamid, name=chalid, value=chalval)
+    solve.description =award_desc
+    solve.category = chal_cat
     db.session.add(solve)
     db.session.commit()
     db.session.close()
