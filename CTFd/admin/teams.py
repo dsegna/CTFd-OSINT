@@ -296,8 +296,7 @@ def create_solve(teamid, chalid,chalval):
     chal_name = tl_chal.name
     chal_cat =  tl_chal.category
     award_desc = chal_cat + " : " + chal_cat
-    solve = Awards(teamid=teamid, name=chalid, value=chalval)
-    solve.description =award_desc
+    solve = Awards(teamid=teamid, name=chal_name, value=chalval)
     solve.category = chal_cat
     db.session.add(solve)
     db.session.commit()
