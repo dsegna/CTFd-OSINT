@@ -23,7 +23,8 @@ window.challenge.submit = function(cb, preview){
     
     var nonce = $('#nonce').val();
 
-	var x = $('#answer-input').val();
+	var x = $('#answer-input option:selected').text();
+
 	var y = $('#answer-url').val();
 	var z = $('#answer-just').val();
 	var delim = " | "

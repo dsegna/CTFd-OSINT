@@ -63,8 +63,30 @@
                         </div>
 
                        	<div class="row submit-row">
+               
+
                             <div class="col-md-9 form-group">
-                                <input class="form-control" type="text" name="answer" id="answer-input" placeholder="Flag" />
+
+
+                                     <label for="answer-input">Select Information Type (select one):</label>
+                                      <select class="form-control" id="answer-input">
+                                 
+                                            <option>Friends</option>
+                                            <option>Employement</option>
+                                            <option>Basic</option>
+                                            <option>Home</option>
+                                            <option>Basic Info</option>
+                                            <option>Advance Info</option>
+                                            <option>Day Last Seen</option>
+                                            <option>DarkWeb</option>
+                                            <option>Location</option>
+                                            <option>Other</option>
+
+                                      </select>
+
+
+
+                                <!-- <input class="form-control" type="text" name="answer"  placeholder="Flagx" /> -->
                                 <input class="form-control" type="text" name="url" id="answer-url" placeholder="URL" />
                                 <input class="form-control" type="text" name="desc" id="answer-just" placeholder="Justification" />
                                 <input id="chal-id" type="hidden" value="{{id}}">

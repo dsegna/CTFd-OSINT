@@ -120,7 +120,7 @@ def admin_team(teamid):
                           .filter_by(team=teamid) \
                           .group_by(Tracking.ip) \
                           .order_by(last_seen.desc()).all()
-        wrong_keys = WrongKeys.query.filter_by(teamid=teamid).order_by(WrongKeys.date.asc()).all()
+        wrong_keys = WrongKeys.query.filter_by(teamid=teamid).order_by(WrongKeys.date.desc()).all()
         awards = Awards.query.filter_by(teamid=teamid).order_by(Awards.date.asc()).all()
         score = user.score(admin=True)
         place = user.place(admin=True)
