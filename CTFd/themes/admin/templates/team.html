@@ -150,6 +150,7 @@
 					<h3 class="text-center py-3 d-block">Wrong Keys</h3>
 					<thead>
 					<tr>
+                        <td class="text-center"><b>Id</b></td>
 						<td class="text-center"><b>Challenge</b></td>
 						<td class="text-center"><b>Submitted</b></td>
 						<td class="text-center"><b>Time</b></td>
@@ -159,6 +160,7 @@
 					<tbody>
 					{% for wrong_key in wrong_keys %}
 						<tr class="chal-wrong">
+                            <td class="text-center chal">{{ wrong_key.id }}</td>
 							<td class="text-center chal" id="{{ wrong_key.chalid }}">{{ wrong_key.chal.name }}</td>
 							<td class="flag" id="{{ wrong_key.id }}"><pre>{{ wrong_key.flag }}</pre></td>
 							<td class="text-center solve-time">
