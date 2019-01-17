@@ -1,0 +1,38 @@
+<div id="submission-award-modal" class="modal fade" tabindex="-1">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h3 id="submission-title" class="text-center"></h3>
+						</div>
+					</div>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+                <form id="submission-award-form">
+				    <div class="container">
+                        <div class="row">
+                            <h3 class="col-12 text-center" id="submission-challenge"></h3>
+                        </div>
+				        <div class="row submit-row">
+                            <div class="col-md-9 form-group">
+                                <input class="form-control" type="text" name="answer"  id="submission-category" disabled placeholder="Category" /> 
+                                <input class="form-control" type="text" name="url" id="submission-url" disabled placeholder="URL" />
+                                <input class="form-control" type="text" name="desc" id="submission-just" disabled placeholder="Justification" />
+                            </div>
+                            <div class="col-md-3 form-group key-submit">
+                                <input class="form-control mb-2" type="number" id="submission-points" />
+                                <button type="button" id="submit-key" tabindex="5" class="form-control btn btn-md btn-outline-secondary float-right">Submit</button>
+                            </div>
+                        </div>
+				    </div>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>

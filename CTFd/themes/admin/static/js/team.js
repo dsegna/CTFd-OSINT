@@ -144,9 +144,41 @@ category_breakdown_graph();
 keys_percentage_graph();
 scoregraph();
 
-
 window.onresize = function () {
     Plotly.Plots.resize(document.getElementById('keys-pie-graph'));
     Plotly.Plots.resize(document.getElementById('categories-pie-graph'));
     Plotly.Plots.resize(document.getElementById('score-graph'));
 };
+
+$(document).ready(function () {
+    $('.chal-wrong').click(function (e) {
+        var modal = $('#submission-award-modal')
+        var submission_id = $(this).attr('submission-id');
+        modal.find('#submission-title').text("Submission Id: " + submission_id);
+        var chal = $(this).find('.chal');
+        var chal_id = chal.attr('id');
+        var chal_points = chal.attr('challenge-points');
+        modal.find('#submission-points').val(chal_points);
+        modal.find('#submission-challenge').text(chal.text());
+        var submission = $(this).find('.flag').text().split('|');
+        modal.find('#submission-category').val(submission[0].trim());
+        modal.find('#submission-url').val(submission[1].trim());
+        modal.find('#submission-just').val(submission[2].trim());
+        modal.find('#submit-key').click(function() {
+            console.log(nonce);
+            console.log(window.location.origin + '/admin/solves/'+teamid()+ '/' + chal_id + '/' + chal_points + '/solve');
+            $.post(window.location.origin + '/admin/solves/'+teamid()+ '/' + chal_id + '/' + chal_points + '/solve',
+                    {
+                    nonce: nonce,
+                    }, function(data){
+                        //$.parseJSON(JSON.stringify(data));
+                        console.log(data);
+    
+            
+                    }
+            );
+        });
+        
+        modal.modal();
+    });
+});

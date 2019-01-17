@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+    {% include "admin/modals/submissions/submissions-award.html" %}
 
 <div class="modal fade" id="create-award-modal" tabindex="-1" role="dialog" aria-labelledby="create-award-label">
 	<div class="modal-dialog" role="document">
@@ -159,10 +160,10 @@
 					</thead>
 					<tbody>
 					{% for wrong_key in wrong_keys %}
-						<tr class="chal-wrong">
-                            <td class="text-center chal">{{ wrong_key.id }}</td>
-							<td class="text-center chal" id="{{ wrong_key.chalid }}">{{ wrong_key.chal.name }}</td>
-							<td class="flag" id="{{ wrong_key.id }}"><pre>{{ wrong_key.flag }}</pre></td>
+						<tr class="chal-wrong" submission-id="{{wrong_key.id}}">
+                            <td class="text-center id">{{ wrong_key.id }}</td>
+							<td class="text-center chal" id="{{ wrong_key.chalid }}" challenge-points="{{wrong_key.chal.value}}">{{ wrong_key.chal.name }}</td>
+							<td class="flag"><pre>{{ wrong_key.flag }}</pre></td>
 							<td class="text-center solve-time">
 								<script>document.write(moment({{ wrong_key.date|unix_time_millis }}).local().format('MMMM Do, h:mm:ss A'))</script>
 							</td>
