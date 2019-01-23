@@ -165,15 +165,13 @@ $(document).ready(function () {
         modal.find('#submission-url').val(submission[1].trim());
         modal.find('#submission-just').val(submission[2].trim());
         modal.find('#submit-key').click(function() {
-            console.log(nonce);
-            console.log(window.location.origin + '/admin/solves/'+teamid()+ '/' + chal_id + '/' + chal_points + '/solve');
+            chal_points = modal.find('#submission-points').val();
+            
             $.post(window.location.origin + '/admin/solves/'+teamid()+ '/' + chal_id + '/' + chal_points + '/solve',
                     {
                     nonce: nonce,
                     }, function(data){
-                        //$.parseJSON(JSON.stringify(data));
-                        console.log(data);
-    
+                        modal.modal('hide');
             
                     }
             );
