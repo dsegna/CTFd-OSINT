@@ -149,11 +149,11 @@ class DynamicValueChallenge(BaseChallenge):
         """
         data = request.form or request.get_json()
         submission = data['submission'].strip()
-        flags = Flags.query.filter_by(challenge_id=challenge.id).all()
-        for flag in flags:
-            if get_flag_class(flag.type).compare(flag, submission):
-                return True, 'Correct'
-        return False, 'Incorrect'
+        #flags = Flags.query.filter_by(challenge_id=challenge.id).all()
+        #for flag in flags:
+        #    if get_flag_class(flag.type).compare(flag, submission):
+        #        return True, 'Correct'
+        return True, 'Judge Pending Results'
 
     @staticmethod
     def solve(user, team, challenge, request):

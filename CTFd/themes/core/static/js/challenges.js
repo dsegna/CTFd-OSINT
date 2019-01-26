@@ -134,6 +134,15 @@ function renderSubmissionResponse(response, cb) {
             answer_input.removeClass("wrong");
         }, 3000);
     }
+    else if (result.status === "Judge Pending Results"){ //Answer is pending
+        results_notification.addClass('alert alert-success alert-dismissable text-center');
+        results_notification.slideDown();
+        answer_input.removeClass("correct");
+        answer_input.addClass("wrong");
+        setTimeout(function () {
+            answer_input.removeClass("wrong");
+        }, 3000);
+    }
     else if (result.status === "correct") { // Challenge Solved
         result_notification.addClass('alert alert-success alert-dismissable text-center');
         result_notification.slideDown();

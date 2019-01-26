@@ -283,9 +283,9 @@ class ChallengeAttempt(Resource):
                 status, message = chal_class.attempt(challenge, request)
 
                 return {
-                    'success': True,
+                    'success': False,
                     'data': {
-                        'status': "correct" if status else "incorrect",
+                        'status': "Pending" if status else "Pending",
                         'message': message
                     }
                 }
@@ -362,7 +362,8 @@ class ChallengeAttempt(Resource):
         ).first()
 
         # Challenge not solved yet
-        if not solves:
+        #if not solves:
+        if True:
             # Hit max attempts
             max_tries = challenge.max_attempts
             if max_tries and fails >= max_tries > 0:
@@ -375,9 +376,10 @@ class ChallengeAttempt(Resource):
                 }, 403
 
             status, message = chal_class.attempt(challenge, request)
-            if status:  # The challenge plugin says the input is right
+           # if status:  # The challenge plugin says the input is right
+            if True:
                 if ctftime() or current_user.is_admin():
-                    chal_class.solve(
+                    chal_class.fail(
                         user=user,
                         team=team,
                         challenge=challenge,
@@ -393,9 +395,9 @@ class ChallengeAttempt(Resource):
                         session['id'])
                 )
                 return {
-                    'success': True,
+                    'success': False,
                     'data': {
-                        'status': "correct",
+                        'status': "incorrect",
                         'message': message
                     }
                 }
@@ -435,7 +437,7 @@ class ChallengeAttempt(Resource):
                     }
                 else:
                     return {
-                        'success': True,
+                        'success': False,
                         'data': {
                             'status': "incorrect",
                             'message': message

@@ -191,6 +191,10 @@ class Awards(db.Model):
 
     def __repr__(self):
         return '<Award %r>' % self.name
+    
+    __mapper_args__ = {
+        'polymorphic_identity': 'awards'
+    }
 
 
 class Tags(db.Model):

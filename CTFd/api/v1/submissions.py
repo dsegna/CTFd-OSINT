@@ -1,13 +1,15 @@
 from flask import session, jsonify, request, abort
 from flask_restplus import Namespace, Resource, reqparse
-
+from CTFd.plugins.challenges import get_chal_class, CHALLENGE_CLASSES
 from CTFd.cache import cache, clear_standings
 from CTFd.utils.scores import get_standings
-from CTFd.models import db, Submissions
+from CTFd.models import db, Submissions, Solves, Fails, Flags, Challenges, ChallengeFiles, Tags, Hints, Awards
 from CTFd.schemas.submissions import SubmissionSchema
+from CTFd.utils.logging import log
 from CTFd.utils.decorators import (
     admins_only,
 )
+#
 
 submissions_namespace = Namespace('submissions', description="Endpoint to retrieve Submission")
 
@@ -85,12 +87,47 @@ class Submission(Resource):
         }
 
     @admins_only
+    def patch(self, submission_id):
+        submission = Submissions.query.filter_by(id=submission_id).first_or_404()
+        challenges = Challenges.query.filter_by(id=submission.challenge_id).first_or_404()
+        #challenges.value = challenges.value - 1
+        #Need to award points
+        awards = Awards(
+            user_id=submission.user_id,
+            team_id=submission.team_id,
+            description = submission.provided,
+            value = 1,
+            category = submission.challenge_id,
+        )
+
+        submission.type = 'correct'
+        log ('submission', "[{date}] {name} submitted {submission} with TYPE {kpm}, Challeng ID {tpm} ",
+                submission=submission.id,
+                kpm = submission.type , tpm = submission.challenge_id
+            )
+        solve = Solves(
+            user_id=submission.user_id,
+            team_id=submission.team_id,
+            challenge_id=submission.challenge_id,
+            ip=submission.ip,
+            provided=submission.provided
+        )
+        db.session.add(awards)
+        db.session.add(solve)
+        db.session.delete(submission)
+        db.session.commit()
+        db.session.close()
+        return {
+            'success': True,
+        }
+
+
+    @admins_only
     def delete(self, submission_id):
         submission = Submissions.query.filter_by(id=submission_id).first_or_404()
         db.session.delete(submission)
         db.session.commit()
         db.session.close()
-
         return {
             'success': True
         }

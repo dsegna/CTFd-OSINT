@@ -24,6 +24,7 @@
 						<td><b>Submission</b></td>
 						<td class="text-center"><b>Date</b></td>
 						<td class="text-center"><b>Delete</b></td>
+						<td class="text-center"><b>Modify</b></td>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,7 +39,7 @@
 						<td class="chal" id="{{ sub.challenge_id }}">
 							{{ sub.challenge_name }}
 						</td>
-						<td>
+						<td class="subType" id="{{sub.type}}">
 							{{ sub.type }}
 						</td>
 						<td class="flag" id="{{ sub.id }}">
@@ -53,6 +54,19 @@
 							<span class="delete-correct-submission" data-toggle="tooltip"
 								  data-placement="top" title="Delete submission #{{ sub.id }}">
 								<i class="fas fa-times"></i>
+							</span>
+						</td>
+						<td class="text-center">
+							<span class="change-type" data-toggle="tooltip"
+								  data-placement="top" title="Mark as Answer #{{ sub.provided}}">
+								<i class="fas fa-check"></i>
+							</span>
+						</td>
+						<td class="text-center">
+							<span 
+								  data-placement="top" title="Award Points">
+								  <input type="number" class="form-control" name="points"
+								  value="{{ sub.Points}}">
 							</span>
 						</td>
 					</tr>
