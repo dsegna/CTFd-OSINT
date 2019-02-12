@@ -127,6 +127,7 @@ function renderSubmissionResponse(data, cb){
         answer_input.addClass("wrong");
         setTimeout(function () {
             answer_input.removeClass("wrong");
+            $('#chal-window').modal('hide');
         }, 3000);
     }
     else if (result.status == 1) { // Challenge Solved
